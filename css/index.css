@@ -10762,4 +10762,18 @@ textarea.form-control-lg {
   .d-print-none {
     display: none !important;
   }
+}
+form.validated input:valid,
+form.validated textarea:valid {
+  border-color: #222f3e;
+}
+
+form.validated input:invalid,
+form.validated textarea:invalid {
+  border-color: #ff9900;
+}
+
+form.validated input:invalid + div,
+form.validated textarea:invalid + div {
+  display: block;
 }/*# sourceMappingURL=index.css.map */
