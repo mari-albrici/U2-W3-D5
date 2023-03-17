@@ -1,8 +1,8 @@
-// ACCESS TOKEN: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NDE0MGNkYWY4MWI0MjAwMTM5YjI3YjgiLCJpYXQiOjE2NzkwMzU2MTAsImV4cCI6MTY4MDI0NTIxMH0.8xfKaqz9fVZRG9kGb-jEnd3VRMa0XZB1q9e_wwtpgCI
+// ACCESS TOKEN: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NDE0MGNkYWY4MWI0MjAwMTM5YjI3YjgiLCJpYXQiOjE2NzkwNjc3OTcsImV4cCI6MTY4MDI3NzM5N30.HQ9vpue9VU4ud1vSPFT_DHosZrEoluweb4XqHuugeck
 
 // Featch w/ access token: fetch("https://striveschool-api.herokuapp.com/api/put-your-endpoint-here/", {
 // headers: {
-// "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NDE0MGNkYWY4MWI0MjAwMTM5YjI3YjgiLCJpYXQiOjE2NzkwMzU2MTAsImV4cCI6MTY4MDI0NTIxMH0.8xfKaqz9fVZRG9kGb-jEnd3VRMa0XZB1q9e_wwtpgCI"
+// "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NDE0MGNkYWY4MWI0MjAwMTM5YjI3YjgiLCJpYXQiOjE2NzkwNjc3OTcsImV4cCI6MTY4MDI3NzM5N30.HQ9vpue9VU4ud1vSPFT_DHosZrEoluweb4XqHuugeck"
 // }
 // })
 
@@ -33,34 +33,32 @@ const endpoint = selectedId
 	: 'https://striveschool-api.herokuapp.com/api/product/';
 const method = selectedId ? 'PUT' : 'POST';
 
-let productId = Math.floor(Math.random() * 100);
-
-let productName = document.getElementById('productName');
-let productDescription = document.getElementById('productDescription');
-let productPrice = document.getElementById('productPrice');
-let productImage = document.getElementById('frame');
-let productBrand = document.getElementById('productBrand');
-
-const newProduct = {
-	_id: productId,
-	name: productName.value,
-	description: productDescription.value,
-	price: productPrice.value,
-	brand: productBrand.value,
-	imageUrl: productImage.src,
-};
-
 const handleSubmit = async (event) => {
 	event.preventDefault();
-	console.log('HERE ON SUBMIT', newProduct);
+	let productId = Math.floor(Math.random() * 100);
+
+	let productName = document.getElementById('productName');
+	let productDescription = document.getElementById('productDescription');
+	let productPrice = document.getElementById('productPrice');
+	let productImage = document.getElementById('frame');
+	let productBrand = document.getElementById('productBrand');
+
+	let newProduct = {
+		userId: productId,
+		name: productName.value,
+		description: productDescription.value,
+		price: productPrice.value,
+		brand: productBrand.value,
+		imageUrl: productImage.src,
+	};
 
 	try {
 		const resp = await fetch(endpoint, {
-			method,
+			method: 'POST',
 			body: JSON.stringify(newProduct),
 			headers: {
 				Authorization:
-					'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NDE0MGNkYWY4MWI0MjAwMTM5YjI3YjgiLCJpYXQiOjE2NzkwMzU2MTAsImV4cCI6MTY4MDI0NTIxMH0.8xfKaqz9fVZRG9kGb-jEnd3VRMa0XZB1q9e_wwtpgCI',
+					'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NDE0MGNkYWY4MWI0MjAwMTM5YjI3YjgiLCJpYXQiOjE2NzkwNjc3OTcsImV4cCI6MTY4MDI3NzM5N30.HQ9vpue9VU4ud1vSPFT_DHosZrEoluweb4XqHuugeck',
 				'Content-Type': 'application/json',
 			},
 		});
@@ -78,6 +76,7 @@ const handleSubmit = async (event) => {
 	} catch (error) {
 		alert(error);
 	}
+	console.log('HERE ON SUBMIT', newProduct);
 };
 
 const handleDelete = async () => {
@@ -102,7 +101,7 @@ let loadProducts = async () => {
 		let loadProducts = await fetch('https://striveschool-api.herokuapp.com/api/product/', {
 			headers: {
 				Authorization:
-					'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NDE0MGNkYWY4MWI0MjAwMTM5YjI3YjgiLCJpYXQiOjE2NzkwMzU2MTAsImV4cCI6MTY4MDI0NTIxMH0.8xfKaqz9fVZRG9kGb-jEnd3VRMa0XZB1q9e_wwtpgCI',
+					'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NDE0MGNkYWY4MWI0MjAwMTM5YjI3YjgiLCJpYXQiOjE2NzkwNjc3OTcsImV4cCI6MTY4MDI3NzM5N30.HQ9vpue9VU4ud1vSPFT_DHosZrEoluweb4XqHuugeck',
 			},
 		});
 		let products = await loadProducts.json();
