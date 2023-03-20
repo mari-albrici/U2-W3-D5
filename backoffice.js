@@ -35,7 +35,7 @@ window.onload = () => {
 	}
 };
 
-const startProcess = (event) => {
+const getProducts = (event) => {
 	event.preventDefault();
 
 	const article = {
@@ -66,8 +66,8 @@ const startProcess = (event) => {
 		});
 };
 
-const DeleteItem = () => {
-	const hasAccepted = confirm("Vuoi eliminare l'articolo?");
+const deleteProduct = () => {
+	const hasAccepted = confirm("Are you sure you want to delete the product? This action isn't undoable.");
 	if (hasAccepted) {
 		fetch(endpoint, {
 			method: 'DELETE',
@@ -77,15 +77,15 @@ const DeleteItem = () => {
 		})
 			.then((res) => {
 				if (res.ok) {
-					alert('Articolo eliminato con successo');
+					alert('Product successfully deleted');
 					window.location.href = 'index.html';
 				} else {
-					throw new Error("Errore durante l'eliminazione dell'articolo");
+					throw new Error("Error: something went wrong with the deletion of the product.");
 				}
 			})
 			.catch((err) => {
 				console.log(err);
-				alert("Si è verificato un errore durante l'eliminazione dell'articolo");
+				alert("Error: something went wrong with the deletion of the product.");
 			});
 	}
 };
